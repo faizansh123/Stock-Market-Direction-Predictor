@@ -7,6 +7,10 @@ from sklearn.metrics import precision_score, accuracy_score, precision_recall_cu
 
 app = FastAPI()
 
+@app.get("/")
+def home():
+    return {"message": "Backend is running successfully 🚀"}
+
 # allow frontend access (React/Next.js)
 app.add_middleware(
     CORSMiddleware,
@@ -74,3 +78,10 @@ def predict_stock(symbol: str):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+import os
+import uvicorn
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("stocks:app", host="0.0.0.0", port=port)
