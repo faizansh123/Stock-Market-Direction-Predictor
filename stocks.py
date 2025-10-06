@@ -3,6 +3,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import requests, pandas as pd, numpy as np, time
 from sklearn.ensemble import RandomForestClassifier
+import os
 from sklearn.metrics import precision_score, accuracy_score, precision_recall_curve
 
 app = FastAPI()
@@ -20,7 +21,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-API_KEY = "HGJNX3K27Z7QBA96"
+API_KEY = os.getenv("API_KEY")
 
 @app.get("/predict/{symbol}")
 def predict_stock(symbol: str):
