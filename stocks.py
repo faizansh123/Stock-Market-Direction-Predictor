@@ -200,4 +200,4 @@ def predict_stock(symbol: str):
 # ======================================================
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
-    uvicorn.run("app:app", host="0.0.0.0", port=port)
+    uvicorn.run("stocks:app", host="0.0.0.0", port=port)
